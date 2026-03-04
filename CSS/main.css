@@ -1,31 +1,55 @@
+html,
 body {
-    margin: 0;
+  height: 100%;
 }
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 0;
+  padding: 10px;
+  position: absolute;
+  /* no empuja el fondo hacia abajo */
+  top: 0;
+  left: 0;
+  z-index: 10;
+  color: white;
+ }
 
 .gamebackground {
-    width: 80vw;
-    height: 50vh;
-    position: relative;
-    flex-direction: center;
-    overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 
-    background-image: url(../Img/background.png);
-    background-size: cover;
-    background-position: left bottom;
-    background-repeat: no-repeat;
- 
-    }
+  background-image: url("../Img/background.png");
+  background-repeat: no-repeat;
 
-.gamebackground.hideNumbers {
-  background-position: right bottom;
+  background-size: contain;
+  background-position: center;
+  background-color: rgba(21, 20, 20, 0.849);
+
+
 }
 
-.player{
-  width: 40px;
-  height: 40px;
+.road {
+ position: absolute;   
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45%;
+  overflow: hidden;
+}
+
+.player {
   position: absolute;
-  left: 20px;
-  bottom: 0px;
+  left: 60px;
+  top: 0;
+  width: 15vw;
+  height: 15vw;
+  height: auto;
   background-image: url(../Img/personaje.gif);
 }
-
