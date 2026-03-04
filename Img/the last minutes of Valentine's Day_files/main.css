@@ -13,6 +13,7 @@ h1 {
   margin: 0;
   padding: 10px;
   position: absolute;
+  /* no empuja el fondo hacia abajo */
   top: 0;
   left: 0;
   z-index: 10;
@@ -48,8 +49,10 @@ h1 {
   position: absolute;
   left: 60px;
   top: 0;
-  width: 5vw;
-  height: 10vh;
+  width: 15vw;
+  height: 15vw;
+  height: auto;
+  background-image: url(../Img/personaje.gif);
 }
 
 .car {
@@ -57,5 +60,4 @@ h1 {
   width: 10vw;
   height: 4vw;
   top: 0;
- 
-}
+ }

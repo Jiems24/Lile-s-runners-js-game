@@ -96,3 +96,10 @@ document.addEventListener("keyup", (e) => {
         jump();
     }
 });
+****************
+
+function renderPlayer() {
+    playerElement.style.left = playerRed.positionX + "px";
+    playerElement.style.bottom = playerRed.positionY + "px";
+}
+
