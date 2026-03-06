@@ -18,6 +18,8 @@ const road = document.querySelector(".road");
 const board = document.querySelector(".gamebackground");
 const title = document.querySelector("h1");
 
+const timerElement = document.querySelector("#timer");
+
 // Seleccionar pantalla Game Over
 const gameOverScreen = document.querySelector(".gameOverScreen");
 const restartBtn = document.querySelector("#restartBtn");
@@ -25,6 +27,11 @@ const restartBtn = document.querySelector("#restartBtn");
 //Configuración de carriles (4 carriles y carril actual)
 const trackCount = 4;
 let trackIndex = 1;
+
+//Temporizador
+let gameTime = 0;
+let timerId;
+
 
 function setGameSizes() {
     const screenWidth = window.innerWidth;
@@ -225,13 +232,33 @@ function startLoops() {
     }, 16);
 }
 
+//Timer
+function updateTimer() {
+    const minutes = Math.floor(gameTime / 60);
+    const seconds = gameTime % 60;
+
+    const minutesText = String(minutes).padStart(2, "0");
+    const secondsText = String(seconds).padStart(2, "0");
+
+    timerElement.textContent = `${minutesText}:${secondsText}`;
+}
+
+function startTimer() {
+    clearInterval(timerId);
+    updateTimer();
+
+    timerId = setInterval(() => {
+        gameTime++;
+        updateTimer();
+    }, 1000);
+}
 
 // Para el juego y muestra cartel "GAME OVER"
 function gameOver() {
     isGameOver = true;
     clearInterval(spawnIntervalId);
     clearInterval(gameLoopId);
-
+    clearInterval(timerId);
     if (gameOverScreen) gameOverScreen.style.display = "flex";
 }
 
@@ -241,6 +268,7 @@ function restartGame() {
 
     clearInterval(spawnIntervalId);
     clearInterval(gameLoopId);
+    clearInterval(timerId);
 
     isGameOver = false;
 
@@ -252,7 +280,11 @@ function restartGame() {
     trackIndex = 1;
     playerSecondTrack();
 
+    gameTime = 0;
+    updateTimer();
+
     startLoops();
+    startTimer();
 
 }
 
@@ -281,4 +313,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     restartBtn.addEventListener("click", restartGame);
     startLoops();
+    updateTimer();
+    startTimer();
 });
